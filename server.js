@@ -1,15 +1,29 @@
-var http = require('http');
+var express = require('express');
+var app = express();
 
-http.createServer(function (request, response) {
+app.use(express.static('public'));
 
-	// 发送 HTTP 头部 
-	// HTTP 状态值: 200 : OK
-	// 内容类型: text/plain
-	response.writeHead(200, {'Content-Type': 'text/plain'});
+app.get('/index.htm', function(req, res) {
+    console.log(__dirname);
+    res.sendFile(__dirname + "/" + "index.htm");
+})
 
-	// 发送响应数据 "Hello World"
-	response.end('Hello World\n');
-}).listen(8888);
+app.get('/process_get', function(req, res) {
 
-// 终端打印如下信息
-console.log('Server running at http://127.0.0.1:8888/');
+    // 输出 JSON 格式
+    response = {
+        first_name: req.query.first_name,
+        last_name: req.query.last_name
+    };
+    console.log(response);
+    res.end(JSON.stringify(response));
+})
+
+var server = app.listen(8081, function() {
+
+    var host = server.address().address
+    var port = server.address().port
+
+    console.log("应用实例，访问地址为 http://%s:%s", host, port)
+
+})
