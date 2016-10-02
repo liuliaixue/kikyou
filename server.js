@@ -3,17 +3,18 @@ var app = express();
 
 app.use(express.static('public'));
 
-app.get('/index.htm', function(req, res) {
+app.get('/index.html', function(req, res) {
     console.log(__dirname);
-    res.sendFile(__dirname + "/" + "index.htm");
+    res.sendFile(__dirname + "/" + "index.html");
 })
 
 app.get('/process_get', function(req, res) {
 
     // 输出 JSON 格式
+    console.log(req.query);
     response = {
-        first_name: req.query.first_name,
-        last_name: req.query.last_name
+        first_name1: req.query.first_name,
+        last_name1: req.query.last_name
     };
     console.log(response);
     res.end(JSON.stringify(response));
