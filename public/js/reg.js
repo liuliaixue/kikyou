@@ -21,7 +21,11 @@ $("#toSend").on('click', function() {
         dataType: "json",
         success: function(data, textStatus) {
             console.log(arguments);
-            alert("用户注册成功！");
+            if (data.error) {
+                alert(data.error);
+            } else {
+                alert("用户注册成功！");
+            }
         }
 
     });

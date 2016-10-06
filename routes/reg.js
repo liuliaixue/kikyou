@@ -32,7 +32,6 @@ router.get('/', function(req, res, next) {
                 res.end(JSON.stringify({ error: err }));
                 return;
             }
-            console.log("其他错误！");
 
             if (result.insertId > 0) {
                 // res.locals.success = '注册成功,请点击   <a class="btn btn-link" href="/login" role="button"> 登录 </a>';
