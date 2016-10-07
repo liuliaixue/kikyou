@@ -15,6 +15,7 @@ pool.on('connection', function(connection) {
 function User(user){
     this.username = user.username;
     this.userpass = user.userpass;
+    this.time = (user.time || new Date() ).toUTCString();
 };
 module.exports = User;
 
@@ -33,12 +34,13 @@ pool.getConnection(function(err, connection) {
     User.prototype.save = function save(callback) {
         var user = {
             username: this.username,
-            userpass: this.userpass
+            userpass: this.userpass,
+            time : this.time
         };
 
-        var insertUser_Sql = "INSERT INTO userinfo(id,username,userpass) VALUES(0,?,?)";
+        var insertUser_Sql = "INSERT INTO userinfo(id,username,userpass,createDate) VALUES(0,?,?,?)";
 
-        connection.query(insertUser_Sql, [user.username, user.userpass], function (err,result) {
+        connection.query(insertUser_Sql, [user.username, user.userpass,user.time], function (err,result) {
             if (err) {
                 console.log("insertUser_Sql Error: " + err.message);
                 return;
