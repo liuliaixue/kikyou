@@ -1,19 +1,13 @@
 $("#toSend").on('click', function() {
-    console.log("a");
+    console.log("login");
 
     var name = $("input[name=name]").val();
     var password = $("input[name=password]").val();
-    var password2 = $("input[name=password-check]").val();
 
-    console.log(name,password,password2);
-    if (name && password && password2) {
-        if (password != password2) {
-            alert("两次密码不同！");
-            return;
-        }
-
+    console.log(name,password);
+    if (name && password ) {
         $.ajax({
-            url: '/register_get',
+            url: '/login_get',
             data: { userpass: password, username: name },
             dataType: "json",
             success: function(data, textStatus) {
@@ -21,14 +15,14 @@ $("#toSend").on('click', function() {
                 if (data.error) {
                     alert(data.error);
                 } else {
-                    alert("用户注册成功！");
+                    alert("用户登录成功！");
                 }
             }
 
         });
 
     } else {
-        alert("字段不能为空");
+        alert("请将信息填写完整！");
         return;
     }
 
