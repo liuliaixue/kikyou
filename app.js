@@ -1,7 +1,11 @@
 var express = require('express');
 var app = express();
+var path = require ("path");
 
 app.use(express.static('public'));
+console.log(path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'views'));  
+app.set('view engine', 'jade');
 
 // app.get('/index.html', function(req, res) {
 //     console.log(__dirname);
@@ -21,6 +25,11 @@ app.use(express.static('public'));
 // })
 var reg = require("./routes/reg");
 app.use("/register_get",reg);
+
+var template = require('./routes/template-file');
+app.use('/template-file',template)
+
+
 
 
 var server = app.listen(8081, function() {
