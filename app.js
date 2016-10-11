@@ -23,11 +23,13 @@ app.set('view engine', 'jade');
 //     console.log(response);
 //     res.end(JSON.stringify(response));
 // })
-var reg = require("./routes/reg");
-app.use("/register_get",reg);
 
-var template = require('./routes/template-file');
-app.use('/template-file',template)
+
+// var reg = require("./routes/reg");
+// app.use("/register_get",reg);
+
+// var template = require('./routes/template-file');
+// app.use('/template-file',template)
 
 
 
