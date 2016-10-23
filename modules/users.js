@@ -1,5 +1,6 @@
 var mysql = require('mysql');
 var DB_NAME = 'nodesample';
+var crypto = require('crypto');
 
 var pool  = mysql.createPool({
     user: 'root', //MySQL认证用户名
@@ -14,7 +15,9 @@ pool.on('connection', function(connection) {
 
 function User(user){
     this.username = user.username;
-    this.userpass = user.userpass;
+    // this.userpass = user.userpass;
+    var md5 = crypto.createHash('md5');
+    this.userpass = md5.update(user.userpass).digest('hex');
     this.time = (user.time || new Date() ).toUTCString();
 };
 module.exports = User;
