@@ -1,12 +1,22 @@
 var express = require('express');
 var app = express();
-var path = require ('path');
-var crypto=require('crypto');
+var path = require('path');
+var crypto = require('crypto');
 var session = require('express-session');
+var cookieParser = require('cookie-parser');
+
+app.use(cookieParser());
+app.use(session({
+    secret: '12345',
+    name: 'testapp', //这里的name值得是cookie的name，默认cookie的name是：connect.sid
+    cookie: { maxAge: 60000 }, //设置maxAge是80000ms，即80s后session和相应的cookie失效过期
+    resave: false,
+    saveUninitialized: true,
+}));
 
 app.use(express.static('public'));
 console.log(path.join(__dirname, 'views'));
-app.set('views', path.join(__dirname, 'views'));  
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.get('/index.html', function(req, res) {
@@ -29,14 +39,15 @@ app.get('/process_get', function(req, res) {
 
 var reg = require("./routes/reg");
 var login = require("./routes/login");
-app.use("/register_get",reg);
-app.use("/login_get",login);
+app.use("/register_get", reg);
+app.use("/login_get", login);
+
 
 // var template = require('./routes/template-file');
 // app.use('/template-file',template)
 
-var template = require('./routes/template-file');
-app.use('/template-file',template)
+var template = require('./routes/usesession');
+app.use('/home/usesession.html', template)
 
 
 

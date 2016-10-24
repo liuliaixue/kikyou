@@ -6,9 +6,10 @@
     "start": ""
   },
   "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "crypto": "latest",
     "express": "~4.14.0",
-    "mysql" : "latest",
-    "crypto" :"latest",
-    "express-session":"latest"
+    "express-session": "latest",
+    "mysql": "latest"
   }
 }
