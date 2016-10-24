@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var path = require ('path');
 var crypto=require('crypto');
+var session = require('express-session');
 
 app.use(express.static('public'));
 console.log(path.join(__dirname, 'views'));

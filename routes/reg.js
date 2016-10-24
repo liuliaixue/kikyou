@@ -8,7 +8,7 @@ var TITLE_REG = '注册';
 
 router.get('/', function(req, res, next) {
 
-    console.log("index routes success");
+    console.log("register routes success");
 
     // res.end(JSON.stringify(req.query));
     var newUser = new User(req.query);
