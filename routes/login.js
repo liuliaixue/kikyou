@@ -20,8 +20,13 @@ router.get('/',check_login, function(req, res, next) {
             }));
         } else {
         	if(result.length){
+                if (req.session) {
+                    req.session.islogin = 'success';
+                    // res.locals.islogin = req.session.islogin;
+                }
         		res.end(JSON.stringify({
-        			result:result
+        			result:result,
+
         		}))
         	}
         	res.end(JSON.stringify({

@@ -16,6 +16,7 @@ $("#toSend").on('click', function() {
                     alert(data.error);
                 } else {
                     alert("用户登录成功！");
+                    
                 }
             }
 
