@@ -5,11 +5,11 @@ var crypto = require('crypto');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 
-app.use(cookieParser());
+app.use(cookieParser('alan'));
 app.use(session({
     secret: '12345',
     name: 'testapp', //这里的name值得是cookie的name，默认cookie的name是：connect.sid
-    cookie: { maxAge: 60000 }, //设置maxAge是80000ms，即80s后session和相应的cookie失效过期
+    cookie: { maxAge: 60 * 1000 }, //设置maxAge是80000ms，即80s后session和相应的cookie失效过期
     resave: false,
     saveUninitialized: true,
 }));
@@ -19,12 +19,12 @@ console.log(path.join(__dirname, 'views'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.get('/index.html', function(req, res) {
+app.get('/index.html', function (req, res) {
     console.log(__dirname);
     res.sendFile(__dirname + "/" + "index.html");
 })
 
-app.get('/process_get', function(req, res) {
+app.get('/process_get', function (req, res) {
 
     // 输出 JSON 格式
     console.log(req.query);
@@ -46,8 +46,53 @@ app.use("/login_get", login);
 // var template = require('./routes/template-file');
 // app.use('/template-file',template)
 
-var template = require('./routes/usesession');
-app.use('/home/usesession.html', template)
+// var template = require('./routes/usesession');
+// app.use('/home/usesession.html', template)
+
+app.get("/home/loginlogin.html", function (req, res, next) {
+    console.log(req.session);
+    console.log(req.session.isLogin);
+
+    req.session.isLogin = "YES";
+    res.end(JSON.stringify({
+        result: "already login"
+    }))
+
+
+})
+
+
+
+app.get("/home/usesession.html", function (req, res, next) {
+    console.log(req.session);
+    console.log(req.session.isLogin);
+
+    if (req.session.isLogin) {
+        res.end(JSON.stringify({
+            result: "already login",
+            session: "YES"
+        }))
+    } else {
+        res.cookie("isLogin", "YES");
+        res.end(JSON.stringify({
+            error: "please login"
+        }))
+    }
+    next();
+})
+
+var usecookie = require("./routes/usecookie");
+app.use("/home/usesession.html", function (req, res, next) {
+     if(req.session.islogin)
+        {
+            console.log('usecookies:' + req.session.islogin);
+            res.locals.islogin = req.session.islogin;      
+        }
+    else{
+        
+    }
+
+});
 
 
 
@@ -55,7 +100,7 @@ app.use('/home/usesession.html', template)
 
 
 
-var server = app.listen(8081, function() {
+var server = app.listen(8081, function () {
 
     var host = server.address().address
     var port = server.address().port
