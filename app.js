@@ -49,15 +49,25 @@ app.use("/login_get", login);
 // var template = require('./routes/usesession');
 // app.use('/home/usesession.html', template)
 
-app.get("/home/loginlogin.html", function (req, res, next) {
+app.get("/home/loginsession.html", function (req, res, next) {
     console.log(req.session);
     console.log(req.session.isLogin);
 
     req.session.isLogin = "YES";
     res.end(JSON.stringify({
-        result: "already login"
+        result: "session  login"
     }))
 
+})
+
+app.get("/home/logincookies.html", function (req, res, next) {
+    console.log(req.session);
+    console.log(req.session.isLogin);
+
+    res.cookie('islogin', 'YES', { maxAge: 60 * 1000 });
+    res.end(JSON.stringify({
+        result: "cookies  login"
+    }))
 
 })
 
@@ -81,15 +91,18 @@ app.get("/home/usesession.html", function (req, res, next) {
     next();
 })
 
-var usecookie = require("./routes/usecookie");
-app.use("/home/usesession.html", function (req, res, next) {
-     if(req.session.islogin)
-        {
-            console.log('usecookies:' + req.session.islogin);
-            res.locals.islogin = req.session.islogin;      
-        }
-    else{
-        
+app.use("/home/usecookies.html", function (req, res, next) {
+    if (req.cookies.islogin) {
+        console.log('usecookies-cookies:' + req.cookies.islogin);
+        req.session.islogin = req.cookies.islogin;
+        res.end(JSON.stringify({
+            result: "cookies already login"
+        }))
+    } else {
+        res.end(JSON.stringify({
+            error: "cookies not found ,please login"
+        }))
+
     }
 
 });
