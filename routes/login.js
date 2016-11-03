@@ -5,7 +5,9 @@ var router = express.Router();
 var User = require("../modules/users.js");
 var TITLE_REG = '登录';
 
-router.get('/', function(req, res, next) {
+var check_login = require('./check_login.js');
+
+router.get('/',check_login, function(req, res, next) {
     console.log(req.query);
     console.log("login route success");
     var user = new User(req.query);
