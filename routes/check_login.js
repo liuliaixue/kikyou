@@ -8,13 +8,13 @@ module.exports = function (req, res, next) {
 
 	// });
 	if (req.session.isLogin) {
-		res.end(JSON.stringify({
+		res.send(JSON.stringify({
 			result: "already login",
 			session: "YES"
 		}))
 	} else {
 		res.cookie("isLogin", "YES");
-		res.end(JSON.stringify({
+		res.send(JSON.stringify({
 			error: "please login"
 		}))
 	}
