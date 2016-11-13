@@ -6,7 +6,7 @@ var User = require("../modules/users.js");
 var TITLE_REG = '注册';
 
 
-router.get('/', function(req, res, next) {
+router.get('/register', function(req, res, next) {
 
     console.log("register routes success");
 

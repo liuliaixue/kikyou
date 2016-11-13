@@ -1,5 +1,4 @@
 $("#toSend").on('click', function() {
-    console.log("login");
 
     var name = $("input[name=name]").val();
     var password = $("input[name=password]").val();
@@ -7,7 +6,7 @@ $("#toSend").on('click', function() {
     console.log(name,password);
     if (name && password ) {
         $.ajax({
-            url: '/login_get',
+            url: '/gateway/api/login',
             data: { userpass: password, username: name },
             dataType: "json",
             success: function(data, textStatus) {

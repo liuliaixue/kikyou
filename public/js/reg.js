@@ -13,7 +13,7 @@ $("#toSend").on('click', function() {
         }
 
         $.ajax({
-            url: '/register_get',
+            url: '/gateway/api/register',
             data: { userpass: password, username: name },
             dataType: "json",
             success: function(data, textStatus) {
