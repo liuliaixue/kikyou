@@ -1,0 +1,16 @@
+doctype html
+html
+    head
+        link(rel="stylesheet" type="text/css" href="/asset/bootstrap/bootstrap.min.css")
+        
+    body
+        h1 book
+        p Welcome to book-list
+        input(type='text' name='name' placeholder="书籍名" )
+        input(type='text' name='code' placeholder="书籍编号")
+        button(type='button' class='btn btn-primary' id='to-add-book') 添加书籍
+        p #{result}
+
+    script( type="text/javascript" src="/asset/jquery/jquery-2.2.1.js")
+    script( type="text/javascript" src="/asset/bootstrap/bootstrap.min.js")
+    script( type="text/javascript" src="/js/book.js")

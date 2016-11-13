@@ -28,9 +28,15 @@ app.use("/gateway/api", login);
 
 /*路由*/
 // 路由：字符串类型
+
+
 app.get('/book', function(req, res, next){
-    res.send('book');
+    // res.send('book');
+    res.render('book-list',{result:'There is not any book'})
 });
+
+var bookAPI = require("./routes/book")
+app.use('/gateway/api',bookAPI)
 
 // 路由：字符串模式
 app.get('/user/*man', function(req, res, next){
