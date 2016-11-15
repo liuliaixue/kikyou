@@ -11,16 +11,13 @@ $("#to-add-book").on('click',function(){
             dataType: "json",
             success: function(data, textStatus) {
                 
-                console.log(arguments);
                 if (data.error) {
                     alert(data.error);
                 } else {
                     alert("添加书籍成功！");
-                    
                 }
             },
             error:function(){
-                console.log(arguments);
                 alert('fail');
             }
 
