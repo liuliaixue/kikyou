@@ -26,6 +26,7 @@ pool.getConnection(function(err, connection) {
         console.log('USE book succeed');
     });
 
+
     //保存数据
     Book.prototype.save = function save(callback) {
         var book = {
