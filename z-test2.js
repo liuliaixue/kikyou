@@ -26,3 +26,27 @@ user.get('/detail', function(req, res, next){
 app.use('/user', user);
 
 app.listen(3000);
+
+
+app.post("/testParams", function (req, res, next) {
+    console.log(req.query);
+    console.log(req.params);
+    console.log(req.body);
+    console.log(666);
+    res.send({ ok: false });
+    var filename = "Log/" + "NodePrintLog" + tools.getNowDateString() +".md";
+    console.log(filename)
+    fs.open(filename, 'a', function (err) {
+        if (err) {
+            console.log("open file fail");
+        }
+        fs.writeFile(filename,req, function (err) {
+            if (err) {
+                console.log("write file fail");
+            }
+            console.log("gogogo");
+        });
+
+    })
+    next();
+})

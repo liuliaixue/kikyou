@@ -30,7 +30,7 @@ pool.getConnection(function(err, connection) {
             console.log("USE Error: " + err.message);
             return;
         }
-        console.log('USE succeed');
+        console.log('USE userinfo succeed');
     });
 
     //保存数据
