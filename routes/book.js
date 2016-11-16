@@ -6,15 +6,12 @@ router.get('/book',function(req,res,next){
     Book.searchBookList(req,function(err,result){
         if(err){
             res.send(JSON.stringify({ error: err }));
-            return;
         }
         else{
-            console.log(result);
-            console.log(result.length);
             if(result.length){
                 res.render('book-list', { result: result })
             }else{
-                res.render('book-list', { result: 'There is not any book' })
+                res.render('book-list', { message: 'There is not any book' })
             }
             
         }
@@ -25,11 +22,10 @@ router.get('/book',function(req,res,next){
 })
 
 
-router.post('gateway/api/addBook',function(req,res,next){
-    // console.log(__dirname);
-    // console.log(req.params);
-    // console.log(req.body);
-    // res.send(req.params);  
+router.post('/gateway/api/addBook',function(req,res,next){
+    console.log(__dirname);
+    console.log(req.params);
+    console.log(req.body);
     var newBook =new Book(req.body);
     newBook.save(function(err, result) {
             if (err) {

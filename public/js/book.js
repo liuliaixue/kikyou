@@ -17,7 +17,8 @@ $("#to-add-book").on('click',function(){
                     alert("添加书籍成功！");
                 }
             },
-            error:function(){
+            error:function(data){
+                console.log(data)
                 alert('fail');
             }
 
