@@ -48,4 +48,29 @@ pool.getConnection(function(err, connection) {
             callback(err, result);
         });
     };
+
+    Book.prototype.getNumByName = function(name,callback){
+        var getBookByName_Sql = "SELECT * FROM book WHERE name = ?";
+        connection.query(getBookByName_Sql,[name],function(err,result){
+            if(err){
+                console.log("insertBook_Sql Error :" +err.message);
+                return;
+            }
+            callback(err, result);
+        })
+    }
+
+    Book.searchBookList = function(searchBean,callback){
+        var start = searchBean.start ||0;
+        var limit = searchBean.limit ||10;
+        var getBookList_Sql = 'SELECT * FROM book order by id asc  limit ? ,? ';
+        connection.query(getBookList_Sql,[start,limit],function(err,result){
+            if(err){
+                console.log("listBook_Sql Error :" +err.message);
+                return;
+            }
+            callback(err, result);
+        })
+
+    }
 })
