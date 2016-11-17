@@ -11,17 +11,18 @@ html
         div(class='heigh-20')
         button(type='button' class='btn btn-primary' id='to-add-book') 添加书籍
         p #{message}
-        if result.length
-        table(style='width:80%;')
-            tr
-                th(style='width:50px;') #
-                th(style='width:100px;') 书名
-                th(style='width:100px;') 编号
-                th(style='width:200px;') 添加时间
-            each item , index in result
+        if result
+            if result.length
+            table(style='width:80%;')
                 tr
-                    each value ,iindex in item
-                        td= value
+                    th(style='width:50px;') #
+                    th(style='width:100px;') 书名
+                    th(style='width:100px;') 编号
+                    th(style='width:200px;') 添加时间
+                each item , index in result
+                    tr
+                        each value ,iindex in item
+                            td= value
 
             
     script( type="text/javascript" src="/asset/jquery/jquery-2.2.1.js")

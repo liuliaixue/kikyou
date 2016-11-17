@@ -11,30 +11,27 @@ router.get('/login', function(req, res, next) {
     console.log("login route success");
     var user = new User(req.query);
     User.userLogin(user.username,user.userpass, function(error, result) {
-        console.log(error);
-        console.log(result);
         if (error) {
-            res.end(JSON.stringify({
+            res.send(JSON.stringify({
                 error: error
             }));
         } else {
         	if(result.length){
                 if (req.session) {
                     req.session.islogin = 'success';
-                    // res.locals.islogin = req.session.islogin;
                 }
-        		res.end(JSON.stringify({
+        		res.send(JSON.stringify({
         			result:result,
 
         		}))
-        	}
-        	res.end(JSON.stringify({
-                error: "用户名或密码错误！"
-            }));
+        	}else{
+                res.send(JSON.stringify({
+                    error: "用户名或密码错误！"
+                }));
+            }
 
-
-            
         }
+        next();
     })
 })
 

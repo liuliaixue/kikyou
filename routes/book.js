@@ -23,9 +23,11 @@ router.get('/book',function(req,res,next){
 
 
 router.post('/gateway/api/addBook',function(req,res,next){
-    console.log(__dirname);
-    console.log(req.params);
-    console.log(req.body);
+    console.log(req.session.islogin);
+
+    // console.log(__dirname);
+    // console.log(req.params);
+    // console.log(req.body);
     var newBook =new Book(req.body);
     newBook.save(function(err, result) {
             if (err) {

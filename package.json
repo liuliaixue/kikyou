@@ -6,10 +6,13 @@
     "start": ""
   },
   "dependencies": {
+    "body-parser": "^1.15.2",
     "cookie-parser": "^1.4.3",
     "crypto": "latest",
     "express": "~4.14.0",
     "express-session": "latest",
-    "mysql": "latest"
+    "mysql": "latest",
+    "node-uuid": "^1.4.7",
+    "jade":"1.11.0"
   }
 }

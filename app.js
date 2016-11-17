@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(session({
     secret: '12345',
     name: 'testapp', //这里的name值得是cookie的name，默认cookie的name是：connect.sid
-    cookie: { maxAge: 60 * 1000 }, //设置maxAge是80000ms，即80s后session和相应的cookie失效过期
+    cookie: { maxAge: 15 * 60 * 1000 }, //设置maxAge是80000ms，即80s后session和相应的cookie失效过期
     resave: false,
     saveUninitialized: true,
 }));
@@ -36,13 +36,6 @@ app.use("/gateway/api", login);
 
 /*路由*/
 // 路由：字符串类型
-
-
-// app.get('/book', function (req, res, next) {
-//     // res.send('book');
-
-//     res.render('book-list', { result: 'There is not any book' })
-// });
 
 var bookAPI = require("./routes/book")
 app.use('/', bookAPI)
