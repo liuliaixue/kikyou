@@ -3,6 +3,7 @@ var router = express.Router();
 var Book = require('../modules/book.js');
 
 router.get('/book',function(req,res,next){
+    console.log(req.session.user);
     Book.searchBookList(req,function(err,result){
         if(err){
             res.send(JSON.stringify({ error: err }));
@@ -23,7 +24,7 @@ router.get('/book',function(req,res,next){
 
 
 router.post('/gateway/api/addBook',function(req,res,next){
-    console.log(req.session.islogin);
+    console.log(req.session.user);
 
     // console.log(__dirname);
     // console.log(req.params);
