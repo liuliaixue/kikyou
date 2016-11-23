@@ -4,13 +4,29 @@ var Book = require('../modules/book.js');
 var tool = require('../modules/tools.js');
 
 router.get('/book', function (req, res, next) {
-    console.log(req.session.user);
-    Book.searchBookList(req, function (err, result) {
+
+    if (req.session.user) {
+        next();
+    } else {
+        res.render('book-list', { message: "not login" })
+    }
+})
+
+router.get(['/book', '/book/:page'], function (req, res, next) {
+    // console.log(req.params);
+    var limit = req.params.limit || 10;
+    var start = (parseInt(req.params.page) || 1) * limit - limit;
+
+    Book.searchBookList({
+        start: start,
+        limit: limit
+    }, function (err, result) {
+        console.log(result)
         if (err) {
             res.send(JSON.stringify({ error: err }));
         }
         else {
-            if (result.length) {
+            if (result.list && result.list.length) {
                 res.render('book-list', { result: result })
             } else {
                 res.render('book-list', { message: 'There is not any book' })
@@ -20,16 +36,21 @@ router.get('/book', function (req, res, next) {
         next();
     })
 
-
 })
 
-
+router.get('/gateway/api/addBook', function (req, res, next) {
+    if (req.session.user) {
+        next();
+    } else {
+        res.render('book-list', { error: "not login" })
+    }
+})
 router.post('/gateway/api/addBook', function (req, res, next) {
 
     // console.log(__dirname);
     // console.log(req.params);
     // console.log(req.body);
-    var book = tool.extend({},req.body, {
+    var book = tool.extend({}, req.body, {
         owner: req.session.user[0].username,
         owner_id: req.session.user[0].id
     });

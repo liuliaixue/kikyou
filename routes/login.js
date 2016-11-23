@@ -19,7 +19,6 @@ router.get('/login', function(req, res, next) {
         	if(result.length){
                 if (req.session) {
                     req.session.islogin = 'success';
-                    console.log(result);
                     req.session.user = result;
                 }
         		res.send(JSON.stringify({

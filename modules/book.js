@@ -18,9 +18,9 @@ function Book(book) {
 };
 module.exports = Book;
 
-pool.getConnection(function(err, connection) {
+pool.getConnection(function (err, connection) {
     var useDbSql = "USE " + DB_NAME;
-    connection.query(useDbSql, function(err) {
+    connection.query(useDbSql, function (err) {
         if (err) {
             console.log("USE Error: " + err.message);
             return;
@@ -42,7 +42,7 @@ pool.getConnection(function(err, connection) {
 
         var insertBook_Sql = "INSERT INTO book(id,name,code,createDate,owner,owner_id) VALUES(0,?,?,?,?,?)";
 
-        connection.query(insertBook_Sql, [book.name, book.code, book.time, book.owner, book.owner_id], function(err, result) {
+        connection.query(insertBook_Sql, [book.name, book.code, book.time, book.owner, book.owner_id], function (err, result) {
             if (err) {
                 console.log("insertUser_Sql Error: " + err.message);
                 return;
@@ -51,9 +51,9 @@ pool.getConnection(function(err, connection) {
         });
     };
 
-    Book.prototype.getNumByName = function(name, callback) {
+    Book.prototype.getNumByName = function (name, callback) {
         var getBookByName_Sql = "SELECT * FROM book WHERE name = ?";
-        connection.query(getBookByName_Sql, [name], function(err, result) {
+        connection.query(getBookByName_Sql, [name], function (err, result) {
             if (err) {
                 console.log("insertBook_Sql Error :" + err.message);
                 return;
@@ -62,17 +62,30 @@ pool.getConnection(function(err, connection) {
         })
     }
 
-    Book.searchBookList = function(searchBean, callback) {
+    Book.searchBookList = function (searchBean, callback) {
         var start = searchBean.start || 0;
         var limit = searchBean.limit || 10;
+        var getCount_Sql = "SELECT count(*) FROM book";
         var getBookList_Sql = 'SELECT * FROM book order by id asc  limit ? ,? ';
-        connection.query(getBookList_Sql, [start, limit], function(err, result) {
-            if (err) {
-                console.log("listBook_Sql Error :" + err.message);
-                return;
-            }
-            callback(err, result);
+        connection.query(getCount_Sql, [], function (err, count) {
+            // console.log(result);
+            connection.query(getBookList_Sql, [start, limit], function (err, result) {
+                if (err) {
+                    console.log("listBook_Sql Error :" + err.message);
+                    return;
+                }
+                // console.log(start,limit,start/limit)
+                // console.log(count, count[0]['count(*)']);
+                callback(err, {
+                    list: result,
+                    page: start / limit,
+                    totalPage: count[0]['count(*)'] / limit,
+                    total: count[0]['count(*)']
+                });
+            })
         })
+
+
 
     }
 })
