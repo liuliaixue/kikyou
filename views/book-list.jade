@@ -24,9 +24,14 @@ html
                         each value ,iindex in item
                             td= value
             nav(style="margin:10px;")
-                a(href="/book" style ="width:20px;display:inline-block;") 1
-                a(href="/book/2" style ="width:20px;display:inline-block;") 2
-                a(href="/book/3" style ="width:20px;display:inline-block;") 3
+                if(result.totalPage==0)
+                    a(href="/book" style ="width:20px;display:inline-block;") 1
+                else
+                    if (result.page >0)
+                        a(href="/book/#{result.page}" style ="width:20px;display:inline-block;") #{result.page}
+                    a(href="/book/#{result.page+1}" style ="width:20px;display:inline-block;") #{result.page+1}
+                    if (result.totalPage>result.page)
+                        a(href="/book/#{result.page+2}" style ="width:20px;display:inline-block;") #{result.page+2}
 
             
     script( type="text/javascript" src="/asset/jquery/jquery-2.2.1.js")

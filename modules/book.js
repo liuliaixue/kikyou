@@ -79,7 +79,7 @@ pool.getConnection(function (err, connection) {
                 callback(err, {
                     list: result,
                     page: start / limit,
-                    totalPage: count[0]['count(*)'] / limit,
+                    totalPage: parseInt( count[0]['count(*)'] / limit ),
                     total: count[0]['count(*)']
                 });
             })
