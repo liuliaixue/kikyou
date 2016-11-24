@@ -79,9 +79,9 @@ app.use('/user', user); // mini app，通常做应用拆分
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-// app.get("/chat", function (req, res, next) {
-//     res.send("welcome to chatroom");
-// });
+app.get("/chat", function (req, res, next) {
+    res.send("welcome to chatroom");
+});
 
 
 //在线用户
