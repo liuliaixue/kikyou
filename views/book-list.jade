@@ -12,6 +12,7 @@ html
         p #{message}
         if result
             if result.length
+<<<<<<< HEAD
                 table(style='width:80%;')
                     tr
                         th(style='width:50px;') #
@@ -22,6 +23,18 @@ html
                         tr
                             each value ,iindex in item
                                 td= value
+=======
+            table(style='width:80%;')
+                tr
+                    th(style='width:50px;') #
+                    th(style='width:100px;') 书名
+                    th(style='width:100px;') 编号
+                    th(style='width:200px;') 添加时间
+                each item , index in result
+                    tr
+                        each value ,iindex in item
+                            td= value
+>>>>>>> d28b9db2069adc50bedc7a54f8f528a8804fa229
 
             
     script( type="text/javascript" src="/asset/jquery/jquery-2.2.1.js")
