@@ -1,0 +1,28 @@
+SELECT * FROM nodesample.book;
+SELECT name,code,id FROM nodesample.book;
+select distinct name from nodesample.book;
+select * from nodesample.book where id > 10; 
+select * from nodesample.book where id = 10;
+select * from nodesample.book where name = '123';
+select * from nodesample.book where name = '123';
+select * from nodesample.book where name='123' and( code = '1234' or code = '123');
+select * from nodesample.book order by id desc,code ;
+insert into nodesample.book values(22,'English 8-2','en8-2' ,'Thu, 17 Nov 2016 14:03:52 GMT');
+update nodesample.book set id =21 where id =22;
+delete from  nodesample.book where id =21;
+
+select * from nodesample.book where name not like 'English%';
+select * from nodesample.book where name like 'English 8-_';
+select * from nodesample.book where name REGEXP '^[E1]';
+
+select * from userinfo,book ;
+select a.username, b.name, b.code 
+from  nodesample.userinfo a, nodesample.book b
+where a.id = b.owner_id;
+
+select * from nodesample.userinfo a left join nodesample.book b on a.id=b.owner_id; 
+
+现在有两张表，userinfo(id,username)和book(id,name,code,owner_id),
+userinfo.id 和book.owner_id是指用户的id
+现在要查询10个用户的信息，以及这是10个用户所拥有的书籍列表,结构应该是这样的
+[{id：id,username:username,book：[{id,name,code,owner_id}]}]
