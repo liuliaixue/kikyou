@@ -6,3 +6,5 @@
 [浏览器请求图标](https://github.com/theworkers/connect-favicons)
     - 浏览器自动请求图标favicons.ico,使用这个中间件来处理
 [bodyParser](http://www.tuicool.com/articles/beEJ32a)
+
+[mysql](http://blog.csdn.net/li12412414/article/details/52024919)
