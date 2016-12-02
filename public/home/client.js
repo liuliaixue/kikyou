@@ -98,7 +98,7 @@
 			
 			//连接websocket后端服务器
 			// this.socket = io.connect('ws://realtime.plhwin.com');
-			this.socket = io.connect('http://localhost:8081');
+			this.socket = io.connect('http://10.0.0.57:8081');
 			
 			//告诉服务器端有用户登录
 			this.socket.emit('login', {userid:this.userid, username:this.username});
