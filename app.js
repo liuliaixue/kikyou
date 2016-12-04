@@ -30,8 +30,10 @@ app.set('view engine', 'jade');
 
 var reg = require("./routes/reg");
 var login = require("./routes/login");
+var logout = require("./routes/logout");
 app.use("/gateway/api", reg);
 app.use("/gateway/api", login);
+app.use("/gateway/api", logout);
 
 
 /*路由*/
