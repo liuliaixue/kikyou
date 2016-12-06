@@ -5,14 +5,34 @@
     <title>注册</title>
 </head>
 <link rel="stylesheet" type="text/css" href="../asset/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/style/basic.css">
+
 <script type="text/javascript" src="../asset/jquery/jquery-2.2.1.js"></script>
 <script type="text/javascript" src="../asset/bootstrap/bootstrap.min.js"></script>
+<style>
+    .container {
+        font-size: 3em;
+    }
+    
+    .block-title {
+        font-size: 1em;
+    }
+    
+    .btn {
+        font-size: 1em;
+    }
+    
+    input.form-control {
+        font-size: 1em;
+        height: 2em;
+    }
+</style>
 
 <body>
     <div class="container">
-        <div class="col-xs-6 col-xs-offset-3">
+        <div class="col-xs-12 ">
             <div class="block-header">
-                <h3 class="block-title">填写用户信息</h3>
+                <h3 class="block-title">User Register</h3>
             </div>
             <div class="block-header bg-primary">
                 <!-- <ul class="block-options">
@@ -39,14 +59,23 @@
                     <input type="password" class="form-control" id="topic-password-check" placeholder="" name="password-check" />
                 </div>
                 <div class="form-group">
-                    <button type="button" class="btn btn-primary" id="toSend">注册</button>
+                    <button type="button" class="btn btn-primary" id="toSend">Register</button>
+                    <button type="button" class="btn btn-default" id="toSend"><a href="/home/login.html">Login</a> </button>
                 </div>
-                <a href="../index.html">
-                    <button type="button" class="btn btn-default" id="toMainPage">返回主页</button>
-                </a>
+
             </form>
         </div>
     </div>
+    <div class="buttom">
+        <ul>
+            <li class="buttom-li">
+                <a href="../index.html"> acitity</a> </li>
+            <li class="buttom-li">
+                <a href="/book"> book</a></li>
+            <li class="buttom-li">
+                <a href="/home/reg.html"> user</a>
+            </li>
+        </ul>
     </div>
 </body>
 <script type="text/javascript" src="../js/reg.js"></script>

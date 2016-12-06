@@ -2,25 +2,38 @@ doctype html
 html
     head
         link(rel="stylesheet" type="text/css" href="/asset/bootstrap/bootstrap.min.css")
-        
+        link(rel="stylesheet" type="text/css" href="/style/basic.css")
+        style.
+            .btn {
+                font-size: 3em;}
+            input.form-control{
+                font-size: 3em;
+                height: 2em;}
+            #error-message{
+                margin-top:1em;
+                font-size:2em;
+            }
+            nav{
+                font-size :2em;
+            }
     body
-        h1 book
-        p Welcome to book-list
-        input(type='text' name='name' placeholder="书籍名" )
-        input(type='text' name='code' placeholder="书籍编号")
+        h1(style="font-size:6em;") My Books
+        p(style="font-size:2em;") Welcome to book-list
+        input(type='text' class="form-control" name='name' placeholder="book name" )
+        input(type='text' class="form-control" name='code' placeholder="book code")
         div(class='heigh-20')
-        button(type='button' class='btn btn-primary' id='to-add-book') 添加书籍
-        p #{message}
+        button(type='button' class='btn btn-primary' id='to-add-book') add book
+        p(id="error-message") #{message}
         if result
             if result.list.length
-            table(style='width:80%;')
+            table
                 tr
                     th(style='width:50px;') #
                     th(style='width:100px;') 书名
                     th(style='width:100px;') 编号
-                    th(style='width:200px;') 添加时间
+                    th(style='width:300px;') 添加时间
                     th(style='width:200px;') 作者
-                    th(style='width:200px;') 作者编号
+                    th(style='width:100px;') 作者编号
                 each item , index in result.list
                     tr
                         each value ,iindex in item
@@ -34,6 +47,14 @@ html
                     a(href="/book/#{result.page+1}" style ="width:20px;display:inline-block;") #{result.page+1}
                     if (result.totalPage>result.page)
                         a(href="/book/#{result.page+2}" style ="width:20px;display:inline-block;") #{result.page+2}
+        div(class="buttom")
+            ul
+                li(class="buttom-li")
+                    a(href="../index.html") acitity
+                li(class="buttom-li")
+                    a(href="/bool") book
+                li(class="buttom-li")
+                    a(href="/home/reg.html") user
 
             
     script( type="text/javascript" src="/asset/jquery/jquery-2.2.1.js")

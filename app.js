@@ -21,6 +21,14 @@ app.use(session({
     saveUninitialized: true,
 }));
 
+app.get('/home/reg.html',function(req,res,next){
+    if(req.session && req.session.user){
+        // user already login
+        res.redirect("/");
+    }
+    next();
+});
+
 
 app.use(express.static('public'));
 // console.log(path.join(__dirname, 'views'));
