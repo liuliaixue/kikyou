@@ -16,10 +16,12 @@ router.get(['/book', '/book/:page'], function (req, res, next) {
     // console.log(req.params);
     var limit = req.params.limit || 10;
     var start = (parseInt(req.params.page) || 1) * limit - limit;
-
-    Book.searchBookList({
+    var ownerID = req.session.user.id;
+    console.log(req.session.user)
+    Book.searchBookListByOwnerID({
         start: start,
-        limit: limit
+        limit: limit,
+        ownerID:ownerID
     }, function (err, result) {
         console.log(result)
         if (err) {
@@ -51,8 +53,8 @@ router.post('/gateway/api/addBook', function (req, res, next) {
     // console.log(req.params);
     // console.log(req.body);
     var book = tool.extend({}, req.body, {
-        owner: req.session.user[0].username,
-        owner_id: req.session.user[0].id
+        owner: req.session.user.username,
+        owner_id: req.session.user.id
     });
     var newBook = new Book(book);
     newBook.save(function (err, result) {

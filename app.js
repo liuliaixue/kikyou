@@ -21,10 +21,12 @@ app.use(session({
     saveUninitialized: true,
 }));
 
-app.get('/home/reg.html',function(req,res,next){
+app.get(['/home/reg.html','/home/login.html'],function(req,res,next){
     if(req.session && req.session.user){
         // user already login
         res.redirect("/home/user.html");
+    }else{
+        next();
     }
 });
 

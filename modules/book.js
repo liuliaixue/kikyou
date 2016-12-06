@@ -79,13 +79,38 @@ pool.getConnection(function (err, connection) {
                 callback(err, {
                     list: result,
                     page: start / limit,
-                    totalPage: parseInt( count[0]['count(*)'] / limit ),
+                    totalPage: parseInt(count[0]['count(*)'] / limit),
                     total: count[0]['count(*)']
                 });
             })
         })
+    }
 
-
-
+    Book.searchBookListByOwnerID = function (searchBean, callback) {
+        var start = searchBean.start || 0;
+        var limit = searchBean.limit || 10;
+        var ownerID = searchBean.ownerID;
+        if (!ownerID) {
+            callback({ error: 'ownerID not found' })
+        }
+        var getCount_Sql = "SELECT count(*) FROM book";
+        var getBookList_Sql = 'SELECT * FROM book  where owner_id = ? order by id asc  limit ? ,? ';
+        connection.query(getCount_Sql, [], function (err, count) {
+            // console.log(result);
+            connection.query(getBookList_Sql, [ownerID,start, limit], function (err, result) {
+                if (err) {
+                    console.log("listBook_Sql Error :" + err.message);
+                    return;
+                }
+                // console.log(start,limit,start/limit)
+                // console.log(count, count[0]['count(*)']);
+                callback(err, {
+                    list: result,
+                    page: start / limit,
+                    totalPage: parseInt(count[0]['count(*)'] / limit),
+                    total: count[0]['count(*)']
+                });
+            })
+        })
     }
 })
