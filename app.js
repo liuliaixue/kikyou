@@ -24,9 +24,8 @@ app.use(session({
 app.get('/home/reg.html',function(req,res,next){
     if(req.session && req.session.user){
         // user already login
-        res.redirect("/");
+        res.redirect("/home/user.html");
     }
-    next();
 });
 
 
