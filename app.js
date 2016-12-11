@@ -13,6 +13,7 @@ var tools = require('./modules/tools');
 app.use(cookieParser('alan'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+// app.use(bodyParser({uploadDir: './public/avatar'}))
 app.use(session({
     secret: '12345',
     name: 'testapp', //这里的name值得是cookie的name，默认cookie的name是：connect.sid
@@ -21,11 +22,11 @@ app.use(session({
     saveUninitialized: true,
 }));
 
-app.get(['/home/reg.html','/home/login.html'],function(req,res,next){
-    if(req.session && req.session.user){
+app.get(['/home/reg.html', '/home/login.html'], function (req, res, next) {
+    if (req.session && req.session.user) {
         // user already login
         res.redirect("/home/user.html");
-    }else{
+    } else {
         next();
     }
 });
@@ -50,6 +51,9 @@ app.use("/gateway/api", logout);
 
 var bookAPI = require("./routes/book")
 app.use('/', bookAPI)
+
+var uploadUserImg = require('./routes/user-img');
+app.use('/gateway/api', uploadUserImg);
 
 
 
