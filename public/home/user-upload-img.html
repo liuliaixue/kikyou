@@ -1,38 +1,56 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
 	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">	   
-	<!--<title><%= title %></title>-->
-  
-    <link rel="stylesheet" type="text/css" href="/asset/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/style/basic.css">
-    <script type="text/javascript" src="/asset/jquery/jquery-2.2.1.js"></script>
-    <script type="text/javascript" src="/asset/bootstrap/bootstrap.min.js"></script>
-  </head>
+	<title>上传文件</title>
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" type="text/css" href="/frozen/css/frozen.css">
+	<script type="text/javascript" src="/asset/jquery/jquery-2.2.1.js"></script>
 
-  <body>
 
-	<div id="container" class="container">
-	   <!--<% if (locals.success) { %> 
-		  <div id="alt_sucess" class="alert alert-success"> 
-			<%- success %> 
-		  </div> 
-	   <% } %> 
+</head>
 
-	  <% if (locals.error) { %> 
-		<div id="alt_warning" class="alert alert-warning"> 
-		  <%= error %> 
-		</div> 
-	  <% } %> -->
+<body>
+	<header class="ui-header ui-header-positive ui-border-b">
+		<i class="ui-icon-return" onclick="history.back()"></i>
+<h1>上传文件 </h1>
+<!--<button class="ui-btn">回首页</button>-->
+</header>
 
-	  <form class="form-signin" action="/gateway/api/user-img" role="form" method="post" enctype='multipart/form-data'>
-		<h2 class="form-signin-heading">上传文件</h2>
-		<input id="fulAvatar" name="fulAvatar" type="file" class="form-control" />	 
-		<br/>
-		<button id="btnSub" class="btn btn-lg btn-primary" type="submit">上 传</button>
-	  </form>	
-	</div> 
-  </body>
+<footer class="ui-footer ui-footer-btn">
+	<ul class="ui-tiled ui-border-t">
+		<li data-href="../index.html" class="ui-border-r">
+			<div>活动</div>
+		</li>
+		<li data-href="/book" class="ui-border-r">
+			<div>我的书籍</div>
+		</li>
+		<li data-href="/home/login.html">
+			<div>用户</div>
+		</li>
+	</ul>
+</footer>
+
+<section class="ui-container">
+	<div class="ui-form ui-border-t">
+
+		<form class="form-signin" action="/gateway/api/user-img" role="form" method="post" enctype='multipart/form-data'>
+
+			<div class="ui-form-item ui-form-item-show ui-border-b">
+				<input type="file" id="fulAvatar" name="fulAvatar" />
+			</div>
+			<div class="ui-btn-wrap">
+				<button id="btnSub" class="ui-btn" type="submit">上 传</button>
+			</div>
+		</form>
+	</div>
+	</div>
+
+</section>
+
+
+</body>
+
 </html>

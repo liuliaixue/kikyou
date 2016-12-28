@@ -17,6 +17,7 @@ router.post('/user-img', function (req, res, next) {
     form.keepExtensions = true;//保存扩展名
     form.maxFieldsSize = 20 * 1024 * 1024;//上传文件的最大大小
     form.parse(req, function (err, fields, files) {
+        console.log("上传成功");
         console.log(fields);
         console.log(files);
     });

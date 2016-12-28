@@ -1,34 +1,100 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>注册</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" type="text/css" href="/frozen/css/frozen.css">
+    <link rel="stylesheet" type="text/css" href="/style/basic.css">
+    <script type="text/javascript" src="/asset/jquery/jquery-2.2.1.js"></script>
 </head>
-<link rel="stylesheet" type="text/css" href="../asset/bootstrap/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="/style/basic.css">
-<script type="text/javascript" src="../asset/jquery/jquery-2.2.1.js"></script>
-<script type="text/javascript" src="../asset/bootstrap/bootstrap.min.js"></script>
-<style>
-    .container {
-        font-size: 3em;
-    }
-    
-    .block-title {
-        font-size: 1em;
-    }
-    
-    .btn {
-        font-size: 1em;
-    }
-    
-    input.form-control {
-        font-size: 1em;
-        height: 2em;
-    }
-</style>
+
 
 <body>
-    <div class="container">
+    <header class="ui-header ui-header-positive ui-border-b">
+        <!--<i class="ui-icon-return" onclick="history.back()"></i>-->
+        <h1>注册 </h1>
+        <!--<button class="ui-btn">回首页</button>-->
+    </header>
+
+    <footer class="ui-footer ui-footer-btn">
+        <ul class="ui-tiled ui-border-t">
+            <li data-href="../index.html" class="ui-border-r">
+                <div>活动</div>
+            </li>
+            <li data-href="/book" class="ui-border-r">
+                <div>我的书籍</div>
+            </li>
+            <li data-href="/home/login.html">
+                <div>用户</div>
+            </li>
+        </ul>
+    </footer>
+
+    <section class="ui-container">
+        <div class="ui-form ui-border-t">
+            <form action="#">
+                <div class="ui-form-item ui-form-item-show ui-border-b">
+                    <label for="#">账号</label>
+                    <input type="text" name="name" value="" />
+                </div>
+                <div class="ui-form-item ui-form-item-show ui-border-b">
+                    <label for="#">密码</label>
+                    <input type="password" name="password" value="" />
+                </div>
+            </form>
+        </div>
+        <div class="ui-btn-wrap">
+            <button class="ui-btn" id="toSend">  确定 </button>
+            <button class="ui-btn" data-href="/home/reg.html">没有账号？ </button>
+        </div>
+
+    </section>
+
+    <script>
+        $('button.ui-btn ').click(function () {
+            if ($(this).data('href')) {
+                location.href = $(this).data('href');
+            }
+        });
+        $('.ui-list li,.ui-tiled li').click(function () {
+            if ($(this).data('href')) {
+                location.href = $(this).data('href');
+            }
+        });
+        $('.ui-header .ui-btn').click(function () {
+            location.href = 'index.html';
+        });
+    </script>
+
+<script>
+        $("#toSend").on('click', function () {
+            var name = $("input[name=name]").val();
+            var password = $("input[name=password]").val();
+            if (name && password) {
+                $.ajax({
+                    url: '/gateway/api/login',
+                    data: { userpass: password, username: name },
+                    dataType: "json",
+                    success: function (data, textStatus) {
+                        console.log(arguments);
+                        if (data.error) {
+                            alert(data.error);
+                        } else {
+                            alert("用户登录成功！");
+                            location.href = "/index.html"
+                        }
+                    }
+                });
+            } else {
+                alert("请将信息填写完整！");
+                return;
+            }
+        });
+</script>
+
+
+<!--<div class="container">
         <div class="col-xs-12">
             <div class="block-header">
                 <h3 class="block-title">填写用户信息</h3>
@@ -44,11 +110,11 @@
                     <label for="topic-password">password :</label>
                     <input type="password" class="form-control" id="topic-password" placeholder="" name="password" value="123456" />
                 </div>
-                <!--<div class="form-group">
+                <div class="form-group">
                     <label class="css-input switch switch-sm switch-primary">
                         <input id="login1-remember-me" name="login1-remember-me" type="checkbox"><span></span> Remember Me?
                     </label>
-                </div>-->
+                </div>
                 <div class="form-group">
                     <button type="button" class="btn btn-primary" id="toSend">登录</button>
                     <button type="button" class="btn btn-default" id="toSend"><a href="/home/reg.html">To Register</a> </button>
@@ -56,8 +122,8 @@
 
             </form>
         </div>
-    </div>
-    <div class="buttom">
+    </div>-->
+<!--<div class="buttom">
         <ul>
             <li class="buttom-li">
                 <a href="../index.html"> acitity</a> </li>
@@ -67,8 +133,8 @@
                 <a href="/home/login.html"> user</a>
             </li>
         </ul>
-    </div>
+    </div>-->
 </body>
-<script type="text/javascript" src="../js/login.js"></script>
+
 
 </html>

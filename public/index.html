@@ -3,51 +3,65 @@
 
 <head>
     <title>欢迎加入朝花夕拾</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" type="text/css" href="/frozen/css/frozen.css">
+    <link rel="stylesheet" type="text/css" href="/style/basic.css">
+    <script type="text/javascript" src="/asset/jquery/jquery-2.2.1.js"></script>
 </head>
-<link rel="stylesheet" type="text/css" href="/asset/bootstrap/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="/style/basic.css">
-<script type="text/javascript" src="/asset/jquery/jquery-2.2.1.js"></script>
-<script type="text/javascript" src="/asset/bootstrap/bootstrap.min.js"></script>
+<meta charset="utf-8">
 
 
 <body>
-    <div class="content">
-        <ul>用户登录
-            <!--<li><a href="/home/reg.html">注册</a></li>-->
-            <!--<li><a href="/home/login.html">登录</a></li>-->
-            <li><a href="/gateway/api/logout">登出</a></li>
-            <!-- <li><a href="/home/login-reset-password.html">修改密码</a></li> -->
-        </ul>
 
-        <!--<ul>session
-        	<li><a href="/home/usesession.html">如何使用 session?</a></li>
-            <li><a href="/home/usecookie.html">如何使用 cookies?</a></li>
-            <li><a href="/home/usesession.html">如何使用 字符串加密?</a></li>
-        </ul>-->
+        <header class="ui-header ui-header-positive ui-border-b">
+            <!--<i class="ui-icon-return" onclick="history.back()"></i>-->
+            <h1>附近在卖的书籍 </h1>
+            <!--<button class="ui-btn">回首页</button>-->
+        </header>
 
-        <ul>学习路由
-            <li><a href="/book">书籍</a></li>
-            <li><a href="/user">用户</a></li>
-            <li><a href="/animal">动物</a></li>
-            <li><a href="/employee">员工</a></li>
-        </ul>
+        <footer class="ui-footer ui-footer-btn">
+            <ul class="ui-tiled ui-border-t">
+                <li data-href="../index.html" class="ui-border-r">
+                    <div>活动</div>
+                </li>
+                <li data-href="/book" class="ui-border-r">
+                    <div>我的书籍</div>
+                </li>
+                <li data-href="/home/login.html">
+                    <div>用户</div>
+                </li>
+            </ul>
+        </footer>
+        <section class="ui-container">
+            <section id="list">
+                <div class="demo-item">
+                    <div class="demo-block">
+                        <ul class="ui-list ui-list-pure ui-border-b">
+                            <li class="ui-border-t" data-href="type.html">
+                                文本
+                            </li>
+                            <li class="ui-border-t" data-href="icon.html">
+                                图标
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
 
-        <ul>聊天室
-            <li><a href="/chat">聊天室</a></li>
-        </ul>
-    </div>
+        </section>
 
-    <div class="buttom">
-        <ul>
-            <li class="buttom-li">
-                <a href="../index.html"> acitity</a> </li>
-            <li class="buttom-li">
-                <a href="/book"> book</a></li>
-            <li class="buttom-li">
-                <a href="/home/login.html"> user</a>
-            </li>
-        </ul>
-    </div>
+
+        <script>
+                $('.ui-list li,.ui-tiled li').click(function () {
+                    if ($(this).data('href')) {
+                        location.href = $(this).data('href');
+                    }
+                });
+                $('.ui-header .ui-btn').click(function () {
+                    location.href = 'index.html';
+                });
+            </script>
 
 </body>
 

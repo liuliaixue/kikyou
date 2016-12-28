@@ -3,37 +3,78 @@
 
 <head>
     <title>欢迎加入朝花夕拾</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" type="text/css" href="/frozen/css/frozen.css">
+    <link rel="stylesheet" type="text/css" href="/style/basic.css">
+    <script type="text/javascript" src="/asset/jquery/jquery-2.2.1.js"></script>
 </head>
-<link rel="stylesheet" type="text/css" href="/asset/bootstrap/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="/style/basic.css">
-<script type="text/javascript" src="/asset/jquery/jquery-2.2.1.js"></script>
-<script type="text/javascript" src="/asset/bootstrap/bootstrap.min.js"></script>
 <style>
-    .user-pro{
-        font-size: 3em;
-        display: block;
-        margin: 0 3em;
-    }
+    .img-li { height: 100px; }
+    .img-box {height: 80px;width: 80px;border: 1px solid #333;background-size: 100% 100%;background-image:url("http://oi4j7xaja.bkt.clouddn.com/ProfilePhoto.jpg")}
 </style>
 
+
 <body>
+    <header class="ui-header ui-header-positive ui-border-b">
+        <!--<i class="ui-icon-return" onclick="history.back()"></i>-->
+        <h1> 用户信息 </h1>
+        <!--<button class="ui-btn">回首页</button>-->
+    </header>
+
+    <footer class="ui-footer ui-footer-btn">
+        <ul class="ui-tiled ui-border-t">
+            <li data-href="../index.html" class="ui-border-r">
+                <div>活动</div>
+            </li>
+            <li data-href="/book" class="ui-border-r">
+                <div>我的书籍</div>
+            </li>
+            <li data-href="/home/login.html">
+                <div>用户</div>
+            </li>
+        </ul>
+    </footer>
+
+    <section class="ui-container">
+
+        <ul class="ui-list ui-list-text ui-border-tb">
+            <li class="ui-border-t img-li" >
+                <div class="ui-list-info">
+                    <!--<h4 class="ui-nowrap">这是标题，加ui-nowrap可以超出长度截断</h4>-->
+                    <div class="img-box"></div>
+                </div>
+                <div class="ui-go ui-badge" data-href="/home/user-upload-img.html">更换头像</div>
+            </li>
+
+
+            <li class="ui-border-t">
+                <div class="ui-list-info">
+                    <h4>接受推送书籍</h4>
+                </div>
+                <label class="ui-switch">
+            <input type="checkbox">
+
+        </label>
+            </li>
+
+        </ul>
+
+    </section>
 
     <div class="content">
         <a class="user-pro" href="/home/user-upload-img.html">更换头像</a>
         <a class="user-pro" href="/gateway/api/logout">登出</a>
     </div>
 
-    <div class="buttom">
-        <ul>
-            <li class="buttom-li">
-                <a href="../index.html"> acitity</a> </li>
-            <li class="buttom-li">
-                <a href="/book"> book</a></li>
-            <li class="buttom-li">
-                <a href="/home/reg.html"> user</a>
-            </li>
-        </ul>
-    </div>
+
+    <script>
+            $('.ui-go').click(function () {
+                if ($(this).data('href')) {
+                        location.href = $(this).data('href');
+                    }
+             });
+        </script>
 </body>
 
 

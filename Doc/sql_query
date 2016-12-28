@@ -21,8 +21,3 @@ from  nodesample.userinfo a, nodesample.book b
 where a.id = b.owner_id;
 
 select * from nodesample.userinfo a left join nodesample.book b on a.id=b.owner_id; 
-
-现在有两张表，userinfo(id,username)和book(id,name,code,owner_id),
-userinfo.id 和book.owner_id是指用户的id
-现在要查询10个用户的信息，以及这是10个用户所拥有的书籍列表,结构应该是这样的
-[{id：id,username:username,book：[{id,name,code,owner_id}]}]
