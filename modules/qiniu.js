@@ -17,7 +17,7 @@ var token = putPolicy.token();
 console.log(token);
 
 //key 上传空间的文件名需要和 putPolicy 中的key 相同
-var filePath = "./public/avatar/upload_770dfeeef55790a83af7e56bd51d364e.jpg";
+var filePath = "./public/avatar/upload_0327f169111120407d68137c1a95db40.png";
 var extra = new qiniu.io.PutExtra();
 
 qiniu.io.putFile(token, key, filePath, null, function (err, ret) {
