@@ -3,6 +3,12 @@ select a.* from signals as a where id in (select max(id) from signals group by n
 
 select id,role,nickname from hakos group by nickname;
 
+<!--数据库导出导入 -->
+目录 C:\Program Files\MySQL\MySQL Server 5.6\bin 
+登录 mysql –uroot  –p
+导出 mysqldump -u root -p nodesample > C:\Users\liu\Downloads\nodesample.sql
+导入 c:\>MySQL -h localhost -u root -p nodesample2 < C:\Users\liu\Downloads\nodesample.sql
+<!--数据库导出导入 end-->
 
 
 
