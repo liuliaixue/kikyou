@@ -4,10 +4,10 @@
 <head>
 	<meta charset="utf-8">
 	<title>上传文件</title>
-	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" type="text/css" href="/frozen/css/frozen.css">
-	<script type="text/javascript" src="/asset/jquery/jquery-2.2.1.js"></script>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" type="text/css" href="/frozen/css/frozen.css">
+    <script type="text/javascript" src="/asset/jquery/jquery-2.2.1.js"></script>
 
 
 </head>
@@ -19,25 +19,12 @@
 <!--<button class="ui-btn">回首页</button>-->
 </header>
 
-<footer class="ui-footer ui-footer-btn">
-	<ul class="ui-tiled ui-border-t">
-		<li data-href="../index.html" class="ui-border-r">
-			<div>活动</div>
-		</li>
-		<li data-href="/book" class="ui-border-r">
-			<div>我的书籍</div>
-		</li>
-		<li data-href="/home/login.html">
-			<div>用户</div>
-		</li>
-	</ul>
-</footer>
+
 
 <section class="ui-container">
 	<div class="ui-form ui-border-t">
-
-		<form class="form-signin" action="/gateway/api/user-img" role="form" method="post" enctype='multipart/form-data'>
-
+		<form id="upload-img" class="form-signin" action="/gateway/api/user-img" role="form" method="post" enctype='multipart/form-data'>
+			<!-- <input type="text" name="kk" /> -->
 			<div class="ui-form-item ui-form-item-show ui-border-b">
 				<input type="file" id="fulAvatar" name="fulAvatar" />
 			</div>
@@ -47,8 +34,8 @@
 		</form>
 	</div>
 	</div>
-
 </section>
+
 
 
 </body>

@@ -62,19 +62,33 @@
 
     </section>
 
-    <div class="content">
+    <!-- <div class="content">
         <a class="user-pro" href="/home/user-upload-img.html">更换头像</a>
         <a class="user-pro" href="/gateway/api/logout">登出</a>
+    </div> -->
+
+    <div class="ui-btn-wrap">
+        <button class="ui-btn" data-href="/home/user-upload-img.html">  更换头像 </button>
+        <button class="ui-btn" data-href="/gateway/api/logout">登出 </button>
     </div>
 
 
+    
     <script>
-            $('.ui-go').click(function () {
-                if ($(this).data('href')) {
-                        location.href = $(this).data('href');
-                    }
-             });
-        </script>
+        $('button.ui-btn ').click(function () {
+            if ($(this).data('href')) {
+                location.href = $(this).data('href');
+            }
+        });
+        $('.ui-list li,.ui-tiled li').click(function () {
+            if ($(this).data('href')) {
+                location.href = $(this).data('href');
+            }
+        });
+        $('.ui-header .ui-btn').click(function () {
+            location.href = 'index.html';
+        });
+    </script>
 </body>
 
 

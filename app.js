@@ -53,7 +53,7 @@ var bookAPI = require("./routes/book")
 app.use('/', bookAPI)
 
 var uploadUserImg = require('./routes/user-img');
-app.use('/gateway/api', uploadUserImg);
+app.use('/gateway/api', uploadUserImg );
 
 
 

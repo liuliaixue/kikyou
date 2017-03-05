@@ -95,6 +95,7 @@ pool.getConnection(function(err, connection) {
     //用户的登录请求
     User.userLogin = function userLogin(username, userpass, callback) {
         var getUserByUserNameAndPassword = "SELECT * FROM userinfo WHERE (username =? AND userpass =?) ";
+        console.log(`SELECT * FROM userinfo WHERE ${username} AND userpass =${userpass} `);
         connection.query(getUserByUserNameAndPassword, [username, userpass], function(err, result) {
             // body...
             if (err) {
@@ -102,6 +103,19 @@ pool.getConnection(function(err, connection) {
                 return;
             }
             callback(err, result);
+        })
+    }
+
+    User.updateHeadImg = function (id ,url ,callback) {
+        if(!id){
+            callback("id not found")
+        }
+        var query = "update userinfo set headImg =? where id = ?; ";
+        connection.query (query,[url,id],function(err,result) {
+            if(err  ){
+                console.log("updateHeadImg Error" + err.message )
+            }
+            callback(err,result);
         })
     }
 
